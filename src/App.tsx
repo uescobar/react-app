@@ -1,6 +1,8 @@
 // Este es el primer archivo a modificar
 import Card, { CardBody } from "./components/Card";
 import List from "./components/List";
+import Button from "./components/Button";
+import { useState } from "react";
 
 /**
  * En JavaScript existen los valores truthy y falsy
@@ -13,7 +15,13 @@ import List from "./components/List";
 
 // Todas la aplicaciones en React necesitan una función, por convención se llama App
 function App() {
-  const list: string[] = ["Tanjiro"];
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleClick = () => {
+    setIsLoading(!isLoading);
+  };
+
+  const list: string[] = ["Tanjiro", "Goku", "Chanchito Feliz"];
   const handleSelect = (elemento: string) => {
     console.log("Elemento seleccionado en App:", elemento);
   };
@@ -46,6 +54,9 @@ function App() {
 
       <CardBody title="Hola Mundo" text="Este es el texto" />
       {contenido}
+      <Button isLoading={isLoading} onClick={handleClick}>
+        Hola Mundo
+      </Button>
     </Card>
   );
 }
