@@ -15,7 +15,9 @@ import { useState } from "react";
 
 // Todas la aplicaciones en React necesitan una función, por convención se llama App
 function App() {
-  const [isLoading, setIsLoading] = useState(false);
+  const [data, setData] = useState(["Tanjiro", "Goku", "Chanchito Feliz"]);
+
+  /* const [isLoading, setIsLoading] = useState(false);
 
   const handleClick = () => {
     setIsLoading(!isLoading);
@@ -31,8 +33,10 @@ function App() {
     <List data={list} onSelect={handleSelect} />
   ) : (
     <p>Sin elementos para mostrar</p>
-  );
+  ); */
 
+  const addMinion = () => setData([...data, "Minion"]);
+  const delMinion = () => setData(data.slice(0, -1));
   return (
     <Card>
       {/* {"" && "string vacio"}
@@ -51,12 +55,15 @@ function App() {
       )}
       
       */}
-
-      <CardBody title="Hola Mundo" text="Este es el texto" />
+      {/* <CardBody title="Hola Mundo" text="Este es el texto" />
       {contenido}
       <Button isLoading={isLoading} onClick={handleClick}>
         Hola Mundo
-      </Button>
+      </Button> */}
+      <Button onClick={addMinion}>Agregar</Button>
+      <Button onClick={delMinion}>Eliminar</Button>
+
+      <List data={data} />
     </Card>
   );
 }
