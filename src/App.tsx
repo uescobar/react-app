@@ -60,8 +60,12 @@ function App() {
       <Button isLoading={isLoading} onClick={handleClick}>
         Hola Mundo
       </Button> */}
-      <Button onClick={addMinion}>Agregar</Button>
-      <Button onClick={delMinion}>Eliminar</Button>
+      <Button isLoading={true} onClick={addMinion}>
+        Agregar
+      </Button>
+      <Button isLoading={false} onClick={delMinion}>
+        Eliminar
+      </Button>
 
       <List data={data} />
     </Card>
