@@ -3,7 +3,7 @@ import { FaRegThumbsUp } from "react-icons/fa";
 import styled from "styled-components";
 
 type BtnProps = {
-  isLoading: boolean;
+  isLoading?: boolean;
 };
 
 const Btn = styled.button<BtnProps>`
