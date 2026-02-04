@@ -1,6 +1,6 @@
 // Este es el primer archivo a modificar
 import { useState } from "react";
-import Alert from "./components/Alert";
+import Button from "./components/Button";
 
 /**
  * En JavaScript existen los valores truthy y falsy
@@ -13,13 +13,17 @@ import Alert from "./components/Alert";
 
 // Todas la aplicaciones en React necesitan una función, por convención se llama App
 function App() {
-  const [status, setStatus] = useState(true);
+  const [sent, setSent] = useState(false);
+  const handleClick = () => {
+    setSent(true);
+  };
 
-  const toggleStatus = () => setStatus(!status);
   return (
-    <Alert status={status} onClick={toggleStatus}>
-      Alerta!
-    </Alert>
+    <div>
+      <Button sent={sent} onClick={handleClick}>
+        Enviar
+      </Button>
+    </div>
   );
 }
 
