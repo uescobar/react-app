@@ -1,31 +1,28 @@
-// Este es el primer archivo a modificar
 import { useState } from "react";
+import ProductDashboard from "./components/ProductDashboard";
+import ProductList from "./components/ProductList";
 import Button from "./components/Button";
 
-/**
- * En JavaScript existen los valores truthy y falsy
- * truthy: cualquier valor que no sea falsy
- * falsy: 0, "", null, undefined, NaN, false
- *
- * Pero en react esto no es así, en react solo se consideran falsy los siguientes valores:
- * false, null, undefined
- * **/
-
-// Todas la aplicaciones en React necesitan una función, por convención se llama App
 function App() {
-  const [sent, setSent] = useState(false);
+  const [products, setProducts] = useState([
+    {
+      id: 1,
+      name: "iPhone",
+    },
+  ]);
+
   const handleClick = () => {
-    setSent(true);
+    const newProduct = { id: 2, name: "Android" };
+    setProducts([...products, newProduct]);
   };
 
   return (
     <div>
-      <Button sent={sent} onClick={handleClick}>
-        Enviar
-      </Button>
+      <ProductDashboard amount={products.length} />
+      <Button onClick={handleClick}>Enviar</Button>
+      <ProductList products={products} />
     </div>
   );
 }
 
-// se tiene que exportar esa función
 export default App;
