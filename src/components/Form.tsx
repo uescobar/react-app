@@ -1,17 +1,15 @@
-import React, { useRef, type FormEvent } from "react";
+import React, { useRef, useState, type FormEvent } from "react";
 
 type Props = {};
 
 function Form({}: Props) {
-  const nameRef = useRef<HTMLInputElement>(null);
-  const lastnameRef = useRef<HTMLInputElement>(null);
+  const [user, setUser] = useState({
+    name: "",
+    lastname: "",
+  });
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    const user = {
-      name: nameRef.current?.value,
-      lastname: lastnameRef.current?.value,
-    };
     console.log(user);
   };
   return (
@@ -23,14 +21,21 @@ function Form({}: Props) {
         <label htmlFor="name" className="form-label">
           Nombre
         </label>
-        <input ref={nameRef} type="text" id="name" className="form-control" />
+        <input
+          value={user.name}
+          onChange={(e) => setUser({ ...user, name: e.target.value })}
+          type="text"
+          id="name"
+          className="form-control"
+        />
       </div>
       <div className="mb-3">
         <label htmlFor="lastname" className="form-label">
           Apellido
         </label>
         <input
-          ref={lastnameRef}
+          value={user.lastname}
+          onChange={(e) => setUser({ ...user, lastname: e.target.value })}
           type="text"
           id="lastname"
           className="form-control"
