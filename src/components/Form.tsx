@@ -1,18 +1,15 @@
 import { useForm } from "react-hook-form";
-
-type Form = {
-  name: string;
-  lastname: string;
-};
+import { zodResolver } from "@hookform/resolvers/zod";
+import { userSchema, type userForm } from "../schemas/user";
 
 function Form() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Form>();
-
-  const onSubmit = (data: Form) => {
+  } = useForm<userForm>({ resolver: zodResolver(userSchema) });
+  console.log(errors);
+  const onSubmit = (data: userForm) => {
     console.log(data);
   };
 
@@ -26,17 +23,12 @@ function Form() {
           Nombre
         </label>
         <input
-          {...register("name", {
-            minLength: {
-              value: 3,
-              message: "El nombre debe tener al menos 3 caracteres",
-            },
-          })}
+          {...register("name")}
           type="text"
           id="name"
           className="form-control"
         />
-        {errors.name && <p>{errors?.name?.message}</p>}
+        {errors?.name?.message ?? <p>{errors?.name?.message}</p>}
       </div>
       <div className="mb-3">
         <label htmlFor="lastname" className="form-label">
@@ -48,6 +40,7 @@ function Form() {
           id="lastname"
           className="form-control"
         />
+        {errors?.lastname?.message ?? <p>{errors?.lastname?.message}</p>}
       </div>
 
       <button className="btn btn-primary">Enviar</button>
